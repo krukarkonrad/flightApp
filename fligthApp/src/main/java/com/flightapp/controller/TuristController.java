@@ -1,15 +1,13 @@
 package com.flightapp.controller;
 
 import com.flightapp.database.model.Turist;
-import com.flightapp.security.TuristService;
+import com.flightapp.service.TuristService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/turist")

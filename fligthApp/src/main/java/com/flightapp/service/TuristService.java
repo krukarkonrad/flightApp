@@ -1,4 +1,4 @@
-package com.flightapp.security;
+package com.flightapp.service;
 
 import com.flightapp.database.model.Turist;
 import com.flightapp.database.repository.TuristRrepository;
