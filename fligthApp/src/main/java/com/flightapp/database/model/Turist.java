@@ -23,6 +23,8 @@ public class Turist {
             inverseJoinColumns = @JoinColumn(name = "gender_id"))
     private Set<Gender> gedners = new HashSet<>();
 
+    private String country;
+
     private String notes;
 
     private LocalDate birthDate;
@@ -61,6 +63,14 @@ public class Turist {
 
     public void setGedners(Set<Gender> gedners) {
         this.gedners = gedners;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getNotes() {
