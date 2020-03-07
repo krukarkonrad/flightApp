@@ -1,6 +1,7 @@
 package com.flightapp.controller;
 
 import com.flightapp.database.model.Turist;
+import com.flightapp.payload.TuristRequest;
 import com.flightapp.service.TuristService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,8 @@ public class TuristController {
     private TuristService turistService;
 
     @PostMapping("/add")
-    public ResponseEntity<?> addTurist(@Valid @RequestBody Turist turist){
-        return turistService.addTurist(turist);
+    public ResponseEntity<?> addTurist(@Valid @RequestBody TuristRequest turistRequest){
+        return turistService.addTurist(turistRequest);
     }
 
     @GetMapping("/all")

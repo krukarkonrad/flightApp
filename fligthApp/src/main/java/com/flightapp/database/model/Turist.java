@@ -1,5 +1,7 @@
 package com.flightapp.database.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -8,6 +10,16 @@ import java.util.Set;
 @Entity
 @Table(name = "turist")
 public class Turist {
+
+    Turist(){}
+
+    public Turist(String name, String surname, String country, String notes, LocalDate birthDate){
+        this.name = name;
+        this.surname = surname;
+        this.country = country;
+        this.notes = notes;
+        this.birthDate = birthDate;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,19 +31,19 @@ public class Turist {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "turist_gender",
-            joinColumns = @JoinColumn(name = "tursit_id"),
+            joinColumns = @JoinColumn(name = "turist_id"),
             inverseJoinColumns = @JoinColumn(name = "gender_id"))
-    private Set<Gender> gedners = new HashSet<>();
+    private Set<Gender> genders = new HashSet<>();
 
     private String country;
 
     private String notes;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "turist")
     private Set<Flight> flights;
-
 
     public Long getId() {
         return id;
@@ -57,12 +69,12 @@ public class Turist {
         this.surname = surname;
     }
 
-    public Set<Gender> getGedners() {
-        return gedners;
+    public Set<Gender> getGendes() {
+        return genders;
     }
 
-    public void setGedners(Set<Gender> gedners) {
-        this.gedners = gedners;
+    public void setGedners(Set<Gender> genders) {
+        this.genders = genders;
     }
 
     public String getCountry() {

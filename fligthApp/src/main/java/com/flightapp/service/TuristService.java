@@ -1,10 +1,14 @@
 package com.flightapp.service;
 
+import com.flightapp.database.model.Gender;
+import com.flightapp.database.model.GenderName;
 import com.flightapp.database.model.Turist;
+import com.flightapp.database.repository.GenderRepository;
 import com.flightapp.database.repository.TuristRrepository;
+import com.flightapp.exception.AppException;
 import com.flightapp.exception.ResourceNotFoundException;
 import com.flightapp.payload.ApiResponse;
-import org.hibernate.annotations.common.reflection.ReflectionUtil;
+import com.flightapp.payload.TuristRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.lang.reflect.Field;
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -23,16 +28,37 @@ public class TuristService {
     @Autowired
     TuristRrepository turistRrepository;
 
-    public ResponseEntity<?> addTurist(Turist turist){
+    @Autowired
+    GenderRepository genderRepository;
+
+    public ResponseEntity<?> addTurist(TuristRequest turistRequest){
+
+        Turist turist = createTurist(turistRequest);
+        turist.setGedners(Collections.singleton(setTuristGender(turistRequest)));
 
         Turist result = turistRrepository.save(turist);
 
         URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/api/turist")
+                .fromCurrentRequest().path("/api/turist/{id}")
                  .buildAndExpand(result.getId()).toUri();
 
-        return ResponseEntity.created(location).body(new ApiResponse(true, "User successfully added"));
+        return ResponseEntity.created(location).
+                body(new ApiResponse(true, "User successfully added"));
     }
+
+        private Turist createTurist(TuristRequest turistRequest){
+            return new Turist(
+                    turistRequest.getName(),
+                    turistRequest.getSurname(),
+                    turistRequest.getCountry(),
+                    turistRequest.getNotes(),
+                    turistRequest.getBirthDate());
+        }
+
+        private Gender setTuristGender(TuristRequest turistRequest){
+            return genderRepository.findByGender(GenderName.valueOf(turistRequest.getGender()))
+                    .orElseThrow(() -> new AppException("Gender not set. Add them to DB!"));
+        }
 
     public @ResponseBody List<Turist> findAll(){
         return turistRrepository.findAll();

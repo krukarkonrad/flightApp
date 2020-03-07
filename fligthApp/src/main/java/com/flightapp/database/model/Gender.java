@@ -5,7 +5,7 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "gender")
+@Table(name = "genders")
 public class Gender {
 
     @Id
@@ -18,6 +18,10 @@ public class Gender {
     private GenderName gender;
 
     public Gender(){}
+
+    public Gender(GenderName genderName){
+        this.gender = genderName;
+    }
 
     public Long getId() {
         return id;
