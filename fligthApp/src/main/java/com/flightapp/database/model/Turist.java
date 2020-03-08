@@ -29,11 +29,7 @@ public class Turist {
 
     private String surname;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "turist_gender",
-            joinColumns = @JoinColumn(name = "turist_id"),
-            inverseJoinColumns = @JoinColumn(name = "gender_id"))
-    private Set<Gender> genders = new HashSet<>();
+    private String gender;
 
     private String country;
 
@@ -69,12 +65,12 @@ public class Turist {
         this.surname = surname;
     }
 
-    public Set<Gender> getGendes() {
-        return genders;
+    public String getGender() {
+        return gender;
     }
 
-    public void setGedners(Set<Gender> genders) {
-        this.genders = genders;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getCountry() {

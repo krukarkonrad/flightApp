@@ -61,7 +61,7 @@ public class FlightService {
         return flight;
     }
 
-    private Flight updateFlightMethod(Flight flight, Map<String, Object> updates){
+        private Flight updateFlightMethod(Flight flight, Map<String, Object> updates){
         updates.forEach((k, v) -> {
             Field field = ReflectionUtils.findField(Flight.class, k);
             if(field != null){

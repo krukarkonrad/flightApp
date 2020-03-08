@@ -1,4 +1,4 @@
-package com.flightapp.database.model;
+package com.flightapp.database.enums;
 
 public enum GenderName {
     GENDER_MALE,

@@ -1,11 +1,8 @@
 package com.flightapp.service;
 
-import com.flightapp.database.model.Gender;
-import com.flightapp.database.model.GenderName;
+import com.flightapp.database.enums.GenderName;
 import com.flightapp.database.model.Turist;
-import com.flightapp.database.repository.GenderRepository;
 import com.flightapp.database.repository.TuristRrepository;
-import com.flightapp.exception.AppException;
 import com.flightapp.exception.ResourceNotFoundException;
 import com.flightapp.payload.ApiResponse;
 import com.flightapp.payload.TuristRequest;
@@ -18,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.lang.reflect.Field;
 import java.net.URI;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +24,10 @@ public class TuristService {
     @Autowired
     TuristRrepository turistRrepository;
 
-    @Autowired
-    GenderRepository genderRepository;
-
     public ResponseEntity<?> addTurist(TuristRequest turistRequest){
 
         Turist turist = createTurist(turistRequest);
-        turist.setGedners(Collections.singleton(setTuristGender(turistRequest)));
+        turist.setGender(GenderName.valueOf(turistRequest.getGender()).toString());
 
         Turist result = turistRrepository.save(turist);
 
@@ -53,11 +46,6 @@ public class TuristService {
                     turistRequest.getCountry(),
                     turistRequest.getNotes(),
                     turistRequest.getBirthDate());
-        }
-
-        private Gender setTuristGender(TuristRequest turistRequest){
-            return genderRepository.findByGender(GenderName.valueOf(turistRequest.getGender()))
-                    .orElseThrow(() -> new AppException("Gender not set. Add them to DB!"));
         }
 
     public @ResponseBody List<Turist> findAll(){
