@@ -43,7 +43,4 @@ public class TuristController {
         return turistService.deleteById(id);
     }
 
-
-
-
 }

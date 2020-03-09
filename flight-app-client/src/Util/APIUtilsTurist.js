@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../constants';
+import { API_BASE_URL } from '../Constants/index';
 
 const request = (options) => {
     const headers = new Headers({
@@ -19,7 +19,7 @@ const request = (options) => {
         );
 };
 
-export function postTurist(addTurist) {
+export function postTurist(addTuristRequest) {
     return request({
         url: API_BASE_URL + "/turist/add",
         method: 'POST',
