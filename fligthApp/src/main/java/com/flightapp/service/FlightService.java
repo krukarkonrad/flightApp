@@ -1,7 +1,7 @@
 package com.flightapp.service;
 
 import com.flightapp.database.model.Flight;
-import com.flightapp.database.model.Turist;
+import com.flightapp.database.model.Tourist;
 import com.flightapp.database.repository.FlightRrepository;
 import com.flightapp.exception.ResourceNotFoundException;
 import com.flightapp.payload.ApiResponse;
@@ -54,7 +54,7 @@ public class FlightService {
 
     public @ResponseBody Flight updateFlight(Long id, Map<String, Object> updates){
         Flight flight = flightRrepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Turist", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Tourist", "id", id));
 
         flightRrepository.save(updateFlightMethod(flight, updates));
 

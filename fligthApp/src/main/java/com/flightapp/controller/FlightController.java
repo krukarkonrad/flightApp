@@ -1,7 +1,7 @@
 package com.flightapp.controller;
 
 import com.flightapp.database.model.Flight;
-import com.flightapp.database.model.Turist;
+import com.flightapp.database.model.Tourist;
 import com.flightapp.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class FlightController {
     FlightService flightService;
 
     @PostMapping("/add")
-    public ResponseEntity<?> addTurist(@Valid @RequestBody Flight flight){
+    public ResponseEntity<?> addTourist(@Valid @RequestBody Flight flight){
         return flightService.addFlight(flight);
     }
 
@@ -34,7 +34,7 @@ public class FlightController {
     }
 
     @PatchMapping("/{id}")
-    public @ResponseBody Flight updateTurist(@PathVariable(value = "id") Long id, @RequestBody Map<String, Object> updates){
+    public @ResponseBody Flight updateTourist(@PathVariable(value = "id") Long id, @RequestBody Map<String, Object> updates){
         return flightService.updateFlight(id, updates);
     }
 

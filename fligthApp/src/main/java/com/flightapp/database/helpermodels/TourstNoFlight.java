@@ -1,9 +1,11 @@
-package com.flightapp.payload;
+package com.flightapp.database.helpermodels;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 
-public class TuristRequest {
+public class TourstNoFlight {
+    private Long id;
 
     private String name;
 
@@ -15,8 +17,16 @@ public class TuristRequest {
 
     private String notes;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

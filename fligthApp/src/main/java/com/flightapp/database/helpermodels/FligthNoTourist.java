@@ -1,21 +1,10 @@
-package com.flightapp.database.model;
+package com.flightapp.database.helpermodels;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonView;
 
-import javax.persistence.*;
-import javax.swing.text.View;
 import java.time.LocalDateTime;
-import java.util.Set;
 
-@Entity
-@Table(name = "flight")
-public class Flight {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class FligthNoTourist {
     private Long id;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -29,11 +18,6 @@ public class Flight {
     private int takenSeatss;
 
     private double ticketPrice;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Set<Tourist> tourist;
-
-    public Flight(){}
 
     public Long getId() {
         return id;
@@ -65,14 +49,6 @@ public class Flight {
 
     public void setSeats(int seats) {
         this.seats = seats;
-    }
-
-    public void setTourist(Set<Tourist> tourist) {
-        this.tourist = tourist;
-    }
-
-    public Set<Tourist> getTourist() {
-        return tourist;
     }
 
     public int getTakenSeatss() {
