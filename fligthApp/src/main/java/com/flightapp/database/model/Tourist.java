@@ -41,10 +41,11 @@ public class Tourist {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JoinTable(name = "flight_tourist",
                 joinColumns = @JoinColumn(name="tourist_id"),
                 inverseJoinColumns = @JoinColumn(name = "flight_id"))
+    @JsonIgnoreProperties("tourists")
     private Set<Flight> flights;
 
     public Long getId() {

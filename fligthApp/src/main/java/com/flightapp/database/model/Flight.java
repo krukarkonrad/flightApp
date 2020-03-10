@@ -30,8 +30,9 @@ public class Flight {
 
     private double ticketPrice;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Set<Tourist> tourist;
+    @ManyToMany(mappedBy = "flights", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("flights")
+    private Set<Tourist> tourists;
 
     public Flight(){}
 
@@ -67,12 +68,12 @@ public class Flight {
         this.seats = seats;
     }
 
-    public void setTourist(Set<Tourist> tourist) {
-        this.tourist = tourist;
+    public Set<Tourist> getTourists() {
+        return tourists;
     }
 
-    public Set<Tourist> getTourist() {
-        return tourist;
+    public void setTourists(Set<Tourist> tourists) {
+        this.tourists = tourists;
     }
 
     public int getTakenSeatss() {
