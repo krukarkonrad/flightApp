@@ -2,6 +2,7 @@ package com.flightapp.controller;
 
 import com.flightapp.database.model.Tourist;
 import com.flightapp.payload.TouristRequest;
+import com.flightapp.service.ParticipateService;
 import com.flightapp.service.TouristService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ public class TouristController {
 
     @Autowired
     private TouristService touristService;
+
+    @Autowired
+    private ParticipateService participateService;
 
     @PostMapping("/add")
     public ResponseEntity<?> addTourist(@Valid @RequestBody TouristRequest touristRequest){
@@ -41,6 +45,18 @@ public class TouristController {
     @DeleteMapping("/{id}")
     public String deleteById(@PathVariable(value = "id") Long id){
         return touristService.deleteById(id);
+    }
+
+    @PutMapping("/{touristid}/inflight/{flightid}")
+    public String addTouristToFlight(@PathVariable(value = "touristid") Long touristId,
+                                     @PathVariable(value = "flightid") Long flightId) {
+        return participateService.addTouristToFlight(touristId, flightId);
+    }
+
+    @DeleteMapping("/{touristid}/inflight/{flightid}")
+    public String deleteTouristFromFlight(@PathVariable(value = "touristid") Long touristId,
+                                     @PathVariable(value = "flightid") Long flightId) {
+        return participateService.deleteTouristFromFlight(touristId, flightId);
     }
 
 }
