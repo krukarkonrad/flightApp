@@ -1,11 +1,8 @@
 package com.flightapp.payload;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.flightapp.database.model.Flight;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class FlightPayload {
 
@@ -13,10 +10,8 @@ public class FlightPayload {
 
     public FlightPayload(Flight flight){
         this.id = flight.getId();
-        this.fligthStartDate = flight.getFligthStart().toLocalDate();
-        this.fligthStartTime = flight.getFligthStart().toLocalTime();
-        this.fligthEndDate = flight.getFligthEnd().toLocalDate();
-        this.fligthEndTime = flight.getFligthEnd().toLocalTime();
+        this.fligthStart = flight.getFligthStart();
+        this.fligthEnd = flight.getFligthEnd();
         this.seats = flight.getSeats();
         this.availableSeats = flight.getSeats() - flight.getTakenSeatss();
         this.ticketPrice = flight.getTicketPrice();
@@ -24,17 +19,9 @@ public class FlightPayload {
 
     private Long id;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate fligthStartDate;
+    private LocalDateTime fligthStart;
 
-    @JsonFormat(pattern="HH:mm:ss")
-    private LocalTime fligthStartTime;
-
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate fligthEndDate;
-
-    @JsonFormat(pattern="HH:mm:ss")
-    private LocalTime fligthEndTime;
+    private LocalDateTime fligthEnd;
 
     private int seats;
 
@@ -46,35 +33,55 @@ public class FlightPayload {
         return temp;
     }
 
+    public void setTemp(String[] temp) {
+        this.temp = temp;
+    }
+
     public Long getId() {
         return id;
     }
 
-    public LocalDate getFligthStartDate() {
-        return fligthStartDate;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public LocalTime getFligthStartTime() {
-        return fligthStartTime;
+    public LocalDateTime getFligthStart() {
+        return fligthStart;
     }
 
-    public LocalDate getFligthEndDate() {
-        return fligthEndDate;
+    public void setFligthStart(LocalDateTime fligthStart) {
+        this.fligthStart = fligthStart;
     }
 
-    public LocalTime getFligthEndTime() {
-        return fligthEndTime;
+    public LocalDateTime getFligthEnd() {
+        return fligthEnd;
+    }
+
+    public void setFligthEnd(LocalDateTime fligthEnd) {
+        this.fligthEnd = fligthEnd;
     }
 
     public int getSeats() {
         return seats;
     }
 
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
     public int getAvailableSeats() {
         return availableSeats;
     }
 
+    public void setAvailableSeats(int availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
     public double getTicketPrice() {
         return ticketPrice;
+    }
+
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 }

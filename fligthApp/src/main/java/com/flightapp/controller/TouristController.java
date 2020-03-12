@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/tourist")
@@ -63,7 +64,7 @@ public class TouristController {
     }
 
     @GetMapping("/search")
-    public  @ResponseBody Flight findFlights(@RequestBody FligthSearchRequest fligthSearchRequest){
-        return participateService.searchForFligth(fligthSearchRequest.getStartDate(), fligthSearchRequest.getEndDate());
+    public  @ResponseBody List<Flight> findFlights(@RequestBody FligthSearchRequest fligthSearchRequest){
+        return participateService.searchForFligth(fligthSearchRequest);
     }
 }
