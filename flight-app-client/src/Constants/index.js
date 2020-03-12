@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://localhost:8080/api';
+export const API_BASE_URL = 'https://flightappkk.herokuapp.com/api';
 
 export const NAME_MIN_LENGTH = 2;
 export const NAME_MAX_LENGTH = 40;
@@ -29,5 +29,5 @@ export const FLIGHT_COLUMNS = [
     {title: 'fligthEnd', dataIndex: 'fligthEnd', key: 'fligthEnd', align: 'center'},
     {title: 'seats', dataIndex: 'seats', key: 'seats', align: 'center'},
     {title: 'takenSeatss', dataIndex: 'takenSeatss', key: 'takenSeatss', align: 'center'},
-    {title: 'ticketPrice', dataIndex: 'ticketPrice', key: 'ticketPrice', align: 'center'}
+    {title: 'ticketPrice', dataIndex: 'ticketPrice', key: 'ticketPrice', align: 'center'},
 ]
