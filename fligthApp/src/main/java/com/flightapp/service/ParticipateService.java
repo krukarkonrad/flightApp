@@ -37,13 +37,20 @@ public class ParticipateService //implements Comparable<Flight>
         Tourist tourist = getTourist(touristId);
         Flight flight = getFlight(flightId);
 
-        tourist.getFlights().add(flight);
-        flight.getTourists().add(tourist);
+        if(flight.getTakenSeatss() < flight.getTakenSeatss()){
+            tourist.getFlights().add(flight);
+            flight.getTourists().add(tourist);
 
-        touristRrepository.save(tourist);
-        flightRrepository.save(flight);
+            flight.setTakenSeatss(flight.getTakenSeatss()+1);
 
-        return("Relationship added!");
+            touristRrepository.save(tourist);
+            flightRrepository.save(flight);
+
+            return ("Relationship added!");
+        } else {
+            return ("Not enough seates availbe");
+        }
+
     }
 
     public String deleteTouristFromFlight(Long touristId, Long flightId){
@@ -53,6 +60,7 @@ public class ParticipateService //implements Comparable<Flight>
 
         tourist.getFlights().remove(flight);
         flight.getTourists().remove(tourist);
+        flight.setTakenSeatss(flight.getTakenSeatss()-1);
 
         touristRrepository.save(tourist);
         flightRrepository.save(flight);
