@@ -3,8 +3,8 @@ import './App.css';
 import 'antd/dist/antd.css';
 
 import Footer from "../Common/Footer.js"
-import Tourists from "../App/Tourist/Tourists.js"
-import Flight from "../App/Flight/Flights.js"
+import Tourists from "./Tourist/Tourists"
+import Flight from "./Flight/Flights.js"
 import { Tabs } from 'antd/lib';
 import { Layout } from "antd/lib"
 const { Content } = Layout;
