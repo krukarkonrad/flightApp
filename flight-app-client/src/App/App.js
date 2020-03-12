@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import 'antd/dist/antd.css';
 
-import Footer from "../Common/Footer.js"
+import Footer from "../Common/Footer"
 import Tourists from "./Tourist/Tourists"
-import Flight from "./Flight/Flights.js"
+import Flight from "./Flight/Flights"
 import { Tabs } from 'antd/lib';
 import { Layout } from "antd/lib"
 const { Content } = Layout;
