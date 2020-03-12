@@ -8,13 +8,14 @@ import com.flightapp.payload.TouristRequest;
 import com.flightapp.service.ParticipateService;
 import com.flightapp.service.TouristService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/tourist")
@@ -51,6 +52,8 @@ public class TouristController {
         return touristService.deleteById(id);
     }
 
+
+
     @PutMapping("/{touristid}/inflight/{flightid}")
     public String addTouristToFlight(@PathVariable(value = "touristid") Long touristId,
                                      @PathVariable(value = "flightid") Long flightId) {
@@ -63,8 +66,11 @@ public class TouristController {
         return participateService.deleteTouristFromFlight(touristId, flightId);
     }
 
-    @GetMapping("/search")
-    public  @ResponseBody List<Flight> findFlights(@RequestBody FligthSearchRequest fligthSearchRequest){
-        return participateService.searchForFligth(fligthSearchRequest);
+    @GetMapping(value = {"/search/{flightstart}", "/search/{flightstart}/{flightend}"})
+    public List<Flight> findFlights(@PathVariable(value = "flightstart")
+                            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate flightStart,
+                            @PathVariable(value = "flightend", required = false)
+                            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate flightEnd){
+        return participateService.searchForFlight(flightStart,flightEnd);
     }
 }

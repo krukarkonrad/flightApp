@@ -5,16 +5,11 @@ import com.flightapp.database.model.Tourist;
 import com.flightapp.database.repository.FlightRrepository;
 import com.flightapp.database.repository.TouristRrepository;
 import com.flightapp.exception.AppException;
-import com.flightapp.payload.FlightPayload;
-import com.flightapp.payload.FligthSearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ParticipateService //implements Comparable<Flight>
@@ -77,24 +72,18 @@ public class ParticipateService //implements Comparable<Flight>
         }
 
 
-    public List<Flight> searchForFligth(FligthSearchRequest fligthSearchRequest){
-        if(fligthSearchRequest.getStartDate().isBefore(fligthSearchRequest.getEndDate().plusDays(1)))
-            if(isRange(fligthSearchRequest)){
-                return withRange(fligthSearchRequest.getStartDate(), fligthSearchRequest.getEndDate());
-            } else {
-                return noRange(fligthSearchRequest.getStartDate());
+    public List<Flight> searchForFlight(LocalDate flightStart, LocalDate flightEnd ){
+        if(flightEnd != null){
+            if(flightStart.isBefore(flightEnd)){
+                return withRange(flightStart, flightEnd);
             }
-        else
-            throw new AppException("Wrong range!");
-    }
-
-        private boolean isRange(FligthSearchRequest fligthSearchRequest){
-            if(fligthSearchRequest.getStartDate() != null && fligthSearchRequest.getEndDate() == null){
-                return  false;
-            } else if(fligthSearchRequest.getStartDate() != null && fligthSearchRequest.getEndDate() != null)
-                return true;
-            else throw new AppException("No date given");
+            else {
+                throw new AppException("Wrong range!");
+            }
+        } else {
+            return noRange(flightStart);
         }
+    }
 
         private List<Flight> noRange(LocalDate flightStart){
             return flightRrepository.findWithStartingDate(flightStart);
