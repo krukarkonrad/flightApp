@@ -1,0 +1,20 @@
+.turist-add-container{
+    margin: 0 auto; 
+    max-width: 420px;
+}
+
+.tusrist-form input {
+    margin-bottom: 3px;
+}
+
+.addToursit-form-button {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.addToursit-form-button[disabled], .addToursit-form-button[disabled]:hover, .addToursit-form-button[disabled]:focus {
+    opacity: 0.6;
+    color: #fff;
+    background-color: #1890ff;
+    border-color: #1890ff;
+}

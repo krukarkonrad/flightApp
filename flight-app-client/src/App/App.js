@@ -29,7 +29,7 @@ function App() {
         </Tabs>
         </Content>
       </div>
-      <Footer className="footer"/>
+      {/* <Footer className="footer"/> */}
     </Layout>
   );
 }
