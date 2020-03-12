@@ -4,10 +4,10 @@ import { getAllTourist , } from '../../Util/APIUtilsTourist.js'
 import NotFound from '../../Common/NotFound.js';
 import ServerError from '../../Common/ServerError.js';
 import LoadingIndicator from '../../Common/LoadingIndicator.js'
-import { Table, Tabs } from 'antd/lib';
+import { Table, Tabs, Collapse } from 'antd/lib';
 import { TOURSIT_COLUMNS, FLIGHT_COLUMNS } from '../../Constants/index.js'
 import SearchFlight from './SearchFlight';
-
+const { Panel } = Collapse;
 class TouristList extends Component{
     constructor(props) {
         super(props);
@@ -71,16 +71,23 @@ class TouristList extends Component{
                     rowKey = "id"
                     expandedRowRender={(record, index) => {
                         var fligthData = dataSource[index].flights;
+                        var touristId = dataSource[index].id;
                         return (
-                            <div>
-                            <Table 
-                                bordered
-                                rowKey="id"
-                                columns={FLIGHT_COLUMNS}
-                                dataSource={fligthData}
-                                /> 
-                            <SearchFlight />
-                            </div>)
+                            <Collapse accordion>
+                                <Panel header="Booked Flight" key="1">
+                                <Table 
+                                    bordered
+                                    rowKey="id"
+                                    columns={FLIGHT_COLUMNS}
+                                    dataSource={fligthData}
+                                    /> 
+                                </Panel>
+                                <Panel header="Book new Flight" key="2">
+                                <SearchFlight
+                                    touristId={touristId}/>
+                                </Panel>
+                            </Collapse>
+                            )
                     }}
                     dataSource={dataSource}
                 />

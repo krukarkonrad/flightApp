@@ -32,7 +32,7 @@ public class ParticipateService //implements Comparable<Flight>
         Tourist tourist = getTourist(touristId);
         Flight flight = getFlight(flightId);
 
-        if(flight.getTakenSeatss() < flight.getTakenSeatss()){
+        if(flight.getTakenSeatss() < flight.getSeats()){
             tourist.getFlights().add(flight);
             flight.getTourists().add(tourist);
 

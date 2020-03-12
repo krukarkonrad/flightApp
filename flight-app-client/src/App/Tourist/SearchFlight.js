@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 //import './Flights.css'
-import { getCorrcetFlight } from '../../Util/APIUtilsTourist.js'
+import { getCorrcetFlight, putRelationship } from '../../Util/APIUtilsTourist.js'
 import NotFound from '../../Common/NotFound.js';
 import ServerError from '../../Common/ServerError.js';
 import LoadingIndicator from '../../Common/LoadingIndicator.js'
-import { Form, Button, DatePicker, notification } from 'antd/lib';
+import { Form, Button, DatePicker, notification, Select } from 'antd/lib';
 import { TOURSIT_COLUMNS, FLIGHT_COLUMNS } from '../../Constants/index.js'
 import FormItem from 'antd/lib/form/FormItem';
+
+const { Option } = Select;
 
 class SearchFlight extends Component{
     constructor(props) {
@@ -18,9 +20,19 @@ class SearchFlight extends Component{
             endDate: {
                 value: ''
             },
-            flights: []
+            flights: [],
+            touristId: {
+                value: ''
+            },
+            flightId:{
+                value: ''
+            }
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleDatePickerChange = this.handleDatePickerChange.bind(this)
+        // this.handleFlightPick = this.handleFlightPick(this);
+        // this.sendRelationship = this.sendRelationship(this)
+        this.sendRelationship = this.sendRelationship.bind(this);
     }
 
     handleSubmit(event) {
@@ -38,7 +50,7 @@ class SearchFlight extends Component{
             //     message: 'Fligth App',
             //     description: "New Tourist Added!",
             // });     
-            console.log(response);     
+            console.log(this.state.flights);     
             
         }).catch(error => {
             notification.error({
@@ -55,8 +67,27 @@ class SearchFlight extends Component{
                 value: inputValue
             }
         })
+        console.log(name + " " + inputValue)
     }
 
+    handleFlightPick(event){
+        
+        this.setState({
+            flightId: {
+                value: event
+            }
+        })
+        
+    }
+
+    sendRelationship(event){
+        console.log(this.state.flightId.value + " " + this.props.touristId);
+        const rlRq = {
+            touristId: this.props.touristId,
+            flightId: this.state.flightId.value
+        }
+        putRelationship(rlRq, this.props.touristId, this.state.flightId.value);
+    }
     // componentDidMount(){
     //     this.loadFlights()
     // }
@@ -74,8 +105,16 @@ class SearchFlight extends Component{
             return <ServerError />;
         }
 
-        var dataSource = this.state.flights;
-              
+    var dataSource = this.state.flights.map(
+        d => 
+            <Option key={d.id}>Stars {d.fligthStart}
+                | Ends {d.fligthEnd}
+                | TicketPrice {d.ticketPrice}
+                | Seats {d.seats}
+                | Taken {d.takenSeatss}
+            </Option>);
+
+
         return(
             <div className="flight-table">
                 <h1>Search for flight for this tourist!</h1>
@@ -100,6 +139,19 @@ class SearchFlight extends Component{
                             >Search</Button>
                     </FormItem>
                     </Form>
+                    <br/>
+                    <Select 
+                        style={{ width: 600}}
+                        placeholder="Search by date above"
+                        onChange={(event) => this.handleFlightPick(event)}
+                    >
+                        {dataSource}
+                    </Select>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        onClick={this.sendRelationship}
+                    >Buy</Button>
             </div>
         );
         

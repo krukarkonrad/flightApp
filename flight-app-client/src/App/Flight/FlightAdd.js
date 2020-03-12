@@ -8,7 +8,7 @@ import {
 
 import { Form, InputNumber, Button, notification, DatePicker, TimePicker } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
-import './FlightAdd.css'
+//import './FlightAdd.css'
 
 class FlightAdd extends Component{
     constructor(props) {
