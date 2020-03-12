@@ -1,6 +1,9 @@
 package com.flightapp.controller;
 
+import com.flightapp.database.model.Flight;
 import com.flightapp.database.model.Tourist;
+import com.flightapp.payload.FlightPayload;
+import com.flightapp.payload.FligthSearchRequest;
 import com.flightapp.payload.TouristRequest;
 import com.flightapp.service.ParticipateService;
 import com.flightapp.service.TouristService;
@@ -59,4 +62,8 @@ public class TouristController {
         return participateService.deleteTouristFromFlight(touristId, flightId);
     }
 
+    @GetMapping("/search")
+    public  @ResponseBody Flight findFlights(@RequestBody FligthSearchRequest fligthSearchRequest){
+        return participateService.searchForFligth(fligthSearchRequest.getStartDate(), fligthSearchRequest.getEndDate());
+    }
 }

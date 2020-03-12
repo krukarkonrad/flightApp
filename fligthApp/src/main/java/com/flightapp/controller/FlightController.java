@@ -2,6 +2,8 @@ package com.flightapp.controller;
 
 import com.flightapp.database.model.Flight;
 import com.flightapp.database.model.Tourist;
+import com.flightapp.payload.FlightPayload;
+import com.flightapp.payload.FligthSearchRequest;
 import com.flightapp.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +44,5 @@ public class FlightController {
     public String deleteById(@PathVariable(value = "id") Long id){
         return flightService.deleteById(id);
     }
-
 
 }

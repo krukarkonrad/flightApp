@@ -4,8 +4,12 @@ import com.flightapp.database.model.Flight;
 import com.flightapp.database.model.Tourist;
 import com.flightapp.database.repository.FlightRrepository;
 import com.flightapp.database.repository.TouristRrepository;
+import com.flightapp.payload.FligthSearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.Set;
 
 @Service
 public class ParticipateService {
@@ -16,22 +20,16 @@ public class ParticipateService {
     @Autowired
     FlightRrepository flightRrepository;
 
+    @Autowired
+    TouristService touristService;
+
+    @Autowired
+    FlightService flightService;
+
     public String addTouristToFlight (Long touristId, Long flightId){
 
-        Tourist tourist;
-        Flight flight;
-
-        if(touristRrepository.existsById(touristId)){
-            tourist = touristRrepository.getOne(touristId);
-        } else {
-            return ("No user found");
-        }
-
-        if(flightRrepository.existsById(flightId)){
-            flight = flightRrepository.getOne(flightId);
-        } else {
-            return ("No flight found");
-        }
+        Tourist tourist = getTourist(touristId);
+        Flight flight = getFlight(flightId);
 
         tourist.getFlights().add(flight);
         flight.getTourists().add(tourist);
@@ -44,20 +42,8 @@ public class ParticipateService {
 
     public String deleteTouristFromFlight(Long touristId, Long flightId){
 
-        Tourist tourist;
-        Flight flight;
-
-        if(touristRrepository.existsById(touristId)){
-            tourist = touristRrepository.getOne(touristId);
-        } else {
-            return ("No user found");
-        }
-
-        if(flightRrepository.existsById(flightId)){
-            flight = flightRrepository.getOne(flightId);
-        } else {
-            return ("No flight found");
-        }
+        Tourist tourist = getTourist(touristId);
+        Flight flight = getFlight(flightId);
 
         tourist.getFlights().remove(flight);
         flight.getTourists().remove(tourist);
@@ -68,4 +54,15 @@ public class ParticipateService {
         return("Relationship removed!");
     }
 
+        private Tourist getTourist(Long id){
+            return touristService.findById(id);
+        }
+
+        private  Flight getFlight(Long id){
+            return flightService.findById(id);
+        }
+
+//    public Flight searchForFligth(LocalDate startDate, LocalDate endDate){
+//
+//    }
 }
