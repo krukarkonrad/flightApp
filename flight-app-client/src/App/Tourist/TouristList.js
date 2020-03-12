@@ -7,6 +7,8 @@ import LoadingIndicator from '../../Common/LoadingIndicator.js'
 import { Table, Tabs, Collapse } from 'antd/lib';
 import { TOURSIT_COLUMNS, FLIGHT_COLUMNS } from '../../Constants/index.js'
 import SearchFlight from './SearchFlight';
+import RemoveFlight from './RemoveFlight';
+
 const { Panel } = Collapse;
 class TouristList extends Component{
     constructor(props) {
@@ -72,6 +74,7 @@ class TouristList extends Component{
                     expandedRowRender={(record, index) => {
                         var fligthData = dataSource[index].flights;
                         var touristId = dataSource[index].id;
+
                         return (
                             <Collapse accordion>
                                 <Panel header="Booked Flight" key="1">
@@ -85,6 +88,11 @@ class TouristList extends Component{
                                 <Panel header="Book new Flight" key="2">
                                 <SearchFlight
                                     touristId={touristId}/>
+                                </Panel>
+                                <Panel header="Remove Flight" key="3">
+                                <RemoveFlight
+                                    touristId={touristId}
+                                    touristsFlights={fligthData}/>
                                 </Panel>
                             </Collapse>
                             )

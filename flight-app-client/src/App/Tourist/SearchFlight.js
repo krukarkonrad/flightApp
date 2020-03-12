@@ -29,9 +29,6 @@ class SearchFlight extends Component{
             }
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleDatePickerChange = this.handleDatePickerChange.bind(this)
-        // this.handleFlightPick = this.handleFlightPick(this);
-        // this.sendRelationship = this.sendRelationship(this)
         this.sendRelationship = this.sendRelationship.bind(this);
     }
 

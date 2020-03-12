@@ -62,3 +62,21 @@ export function getCorrcetFlight(fligthSearchRequest) {
         method: 'GET'
     })
 }
+
+export function putRelationship(rlRq, touristid, flightid) {
+    console.log(API_BASE_URL + "/tourist/"+ touristid + "/inflight/" + flightid);
+    return request({
+        url: API_BASE_URL + "/tourist/"+ touristid + "/inflight/" + flightid,
+        method: 'PUT',
+        body: JSON.stringify(rlRq)
+    })
+}
+
+export function deleteRelationship(rlRq, touristid, flightid) {
+    console.log(API_BASE_URL + "/tourist/"+ touristid + "/inflight/" + flightid);
+    return request({
+        url: API_BASE_URL + "/tourist/"+ touristid + "/inflight/" + flightid,
+        method: 'DELETE',
+        body: JSON.stringify(rlRq)
+    })
+}
