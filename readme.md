@@ -222,6 +222,21 @@ PATCH do require JSON body with fields to edit.
 ```
 This body is received as ```Map<String, Object> updates``` which is used by loop to upload certain fields.
 
+SearchForFlight.GET
+--
+We have two possibly to search for flight.
+
+With only starting date:
+```
+api/tourist/search/{flightstart}
+```
+
+or with additional ending date:
+```
+api/tourist/search/{flightstart}/{flightend}
+```
+
+Backend prevents from putting unsearchable range (like ```flightstart``` > ```flightend```)
 
 Participate.PUT
 --
