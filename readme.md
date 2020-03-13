@@ -2,8 +2,9 @@
 
 Hi, Konrad here.
 It's my app for an internship assignment.
+![](https://i.gyazo.com/575aa23c6206d617b8812ad8a071bde9.png)
 
-If your are running this app via internet sites bellow by patient at beginning, **heroku** need to "wake up" (30-60 sec).
+#####If your are running this app via internet sites bellow by patient at beginning, **heroku** may need to "wake up" (30-60 sec).
 <br/>
 
 # General
@@ -27,7 +28,7 @@ Datebase: curently is on **heroku** site, while writing and testing code it was 
 
 ## DataBase
 
-Database view with **ManyToMany** relation.
+Database view with **ManyToMany** relationship.
 ![](https://i.gyazo.com/11a181d75641485aa37cc69b91a772a6.png)
 
 # Backend HTTP Calls
@@ -127,7 +128,7 @@ Tourist.PATCH (not implemented on Frotnend)
 api/tourist/{id}
 ```
 
-POST do require JSON body with fields to edit.
+PATCH do require JSON body with fields to edit.
  ```
 {
 	"name": "Jan",
@@ -212,7 +213,7 @@ Flight.PATCH (not implemented on Frotnend)
 api/flight/{id}
 ```
 
-POST do require JSON body with fields to edit.
+PATCH do require JSON body with fields to edit.
  ```
 {
 	"seats": "4",
@@ -227,5 +228,30 @@ Participate.PUT
 Is provided by TouristController
 
 ```
-api/tourist
+api/tourist/{touristid}/inflight/{flightid}
 ```
+Adds a relationship between Tourist and Flight
+
+Participate.DELETE
+--
+Is provided by TouristController
+
+```
+api/tourist/{touristid}/inflight/{flightid}
+```
+Removes a relationship between Tourist and Flight
+
+# Backend Service
+
+Every HTTP call is holded by proper service that is doing whole logic and database stuff.
+
+Backend code is availabe in this repository ```flightApp/fligthApp/src/main/java/com/flightapp/```
+
+#Frontend
+
+As an aplication ctoains only few action I wasn't using React Route.
+
+The biggest vulnerability for me is not refreshing list of Tourist/Flight assignet.
+
+After an insert or remove of Tourist/Flight we need to refresh whole page to see results.
+
