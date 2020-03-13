@@ -16,7 +16,7 @@ public class Flight {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long flightId;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fligthStart;
@@ -37,11 +37,11 @@ public class Flight {
     public Flight(){}
 
     public Long getId() {
-        return id;
+        return flightId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.flightId = id;
     }
 
     public LocalDateTime getFligthStart() {

@@ -26,7 +26,7 @@ public class Tourist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long touristId;
 
     private String name;
 
@@ -49,11 +49,11 @@ public class Tourist {
     private Set<Flight> flights;
 
     public Long getId() {
-        return id;
+        return touristId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.touristId = id;
     }
 
     public String getName() {
