@@ -4,10 +4,13 @@ Hi, Konrad here.
 It's my app for an internship assignment.
 
 If your are running this app via internet sites bellow by patient at beginning, **heroku** need to "wake up" (30-60 sec).
+<br/>
+WARNING: Option Flights->List with Tourist->*FLIGHT*->Add new Tourist - DOESN'T WORK ONLiNE (idk why) 
 
 # General
 ## App sites
 FrontEnd: https://nostalgic-tereshkova-d1a088.netlify.com/ (with linked backend)
+
 BackEnd: https://flightappkk.herokuapp.com (REST API)
 
 Datebase: curently is on **heroku** site, while writing and testing code it was a MySQL db stored locally at my computer (XAMPP app).
@@ -46,6 +49,36 @@ Return specify tourist that we could find in database by **ID**.
 
 If it has got flights - it will have an array of them.
 
+```
+{
+    "id": 1,
+    "name": "Konrad",
+    "surname": "Krukar",
+    "gender": "GENDER_MALE",
+    "country": "Poland",
+    "notes": "Blank",
+    "birthDate": "1997-03-09",
+    "flights": [
+        {
+            "fligthStart": "2020-04-07 04:02:21",
+            "fligthEnd": "2020-04-09 07:14:21",
+            "seats": 4,
+            "takenSeatss": 3,
+            "ticketPrice": 16.0,
+            "id": 585
+        },
+        {
+            "fligthStart": "2020-04-10 14:59:09",
+            "fligthEnd": "2020-04-13 20:07:09",
+            "seats": 3,
+            "takenSeatss": 2,
+            "ticketPrice": 22.0,
+            "id": 199
+        }
+    ]
+}
+```
+
 Tourist.POST
 --
 
@@ -54,7 +87,7 @@ api/tourist/add
 ```
  POST do require JSON body, e.g:
  ```
- {
+{
 	"name": "Jan",
 	"surname": "Kowalski",
 	"gender": "GENDER_MALE",
@@ -66,8 +99,8 @@ api/tourist/add
 As a return information we get :
 ```
 {
-	"success": true,
-	"message": "User successfully added"
+    "success": true,
+    "message": "User successfully added"
 }
 ```
 
@@ -91,7 +124,18 @@ Removes tourist with proper **ID**
 Tourist.PATCH (not implemented on Frotnend)
 --
 
+```
+api/tourist/{id}
+```
 
+POST do require JSON body with fields to edit.
+ ```
+{
+	"name": "Jan",
+	"surname": "Kowalski",
+}
+```
+This body is recived as ```Map<String, Object> updates``` which is used by loop to upload certain fields.
 
 Flight.GET
  --
@@ -165,5 +209,17 @@ Removes flight with proper **ID**
 
 Flight.PATCH (not implemented on Frotnend)
 --
+```
+api/flight/{id}
+```
+
+POST do require JSON body with fields to edit.
+ ```
+{
+	"seats": "4",
+	"takenSeatss": "2",
+}
+```
+This body is recived as ```Map<String, Object> updates``` which is used by loop to upload certain fields.
 
 
