@@ -5,7 +5,6 @@ It's my app for an internship assignment.
 
 If your are running this app via internet sites bellow by patient at beginning, **heroku** need to "wake up" (30-60 sec).
 <br/>
-WARNING: Option Flights->List with Tourist->*FLIGHT*->Add new Tourist - DOESN'T WORK ONLiNE (idk why) 
 
 # General
 ## App sites
@@ -223,3 +222,10 @@ POST do require JSON body with fields to edit.
 This body is recived as ```Map<String, Object> updates``` which is used by loop to upload certain fields.
 
 
+Participate.PUT
+--
+Is provided by TouristController
+
+```
+api/tourist
+```
