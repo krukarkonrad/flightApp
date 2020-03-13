@@ -4,7 +4,7 @@ Hi, Konrad here.
 It's my app for an internship assignment.
 ![](https://i.gyazo.com/575aa23c6206d617b8812ad8a071bde9.png)
 
-#####If your are running this app via internet sites bellow by patient at beginning, **heroku** may need to "wake up" (30-60 sec).
+#### If your are running this app via internet sites bellow by patient at beginning, **heroku** may need to "wake up" (30-60 sec).
 <br/>
 
 # General
@@ -230,7 +230,11 @@ Is provided by TouristController
 ```
 api/tourist/{touristid}/inflight/{flightid}
 ```
-Adds a relationship between Tourist and Flight
+Adds a relationship between Tourist and Flight.
+
+It also checks if ```Flight.takenSeatss``` is not equal to ```Flight.seats```.
+
+If so increment ```Flight.takenSeatss``` and adds a relationship between Tourist and Flight.
 
 Participate.DELETE
 --
@@ -247,7 +251,7 @@ Every HTTP call is holded by proper service that is doing whole logic and databa
 
 Backend code is availabe in this repository ```flightApp/fligthApp/src/main/java/com/flightapp/```
 
-#Frontend
+# Frontend
 
 As an aplication ctoains only few action I wasn't using React Route.
 
@@ -255,3 +259,39 @@ The biggest vulnerability for me is not refreshing list of Tourist/Flight assign
 
 After an insert or remove of Tourist/Flight we need to refresh whole page to see results.
 
+
+# Disclaimer
+
+Values like ```seats```, ```takenSeatss``` are totally random: 
+```
+seats = takenSeatss + random(1,4)
+```
+
+As well relationships.
+
+So we could receive a ```Flight``` with values like:
+
+```
+{
+    "fligthStart": "2020-03-29 07:53:31",
+    "fligthEnd": "2020-03-30 10:15:31",
+    "seats": 6,
+    "id": 200,
+    "takenSeatss": 2,
+    "ticketPrice": 35.0,
+    "tourists": [
+        {
+            "name": "Bonny",
+            "surname": "Duffield",
+            "gender": "GENDER_FEMALE",
+            "country": "Indonesia",
+            "notes": "Tamil",
+            "birthDate": "1997-12-19",
+            "id": 131
+        }
+    ]
+}
+``` 
+
+Which contains ony one ```Tourist``` but seats ```Flight.takenSeatss``` may suggest something else.
+This numbers are only for presentation purpose.
