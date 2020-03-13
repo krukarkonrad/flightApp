@@ -53,7 +53,6 @@ public class TouristController {
     }
 
 
-
     @PutMapping("/{touristid}/inflight/{flightid}")
     public String addTouristToFlight(@PathVariable(value = "touristid") Long touristId,
                                      @PathVariable(value = "flightid") Long flightId) {
