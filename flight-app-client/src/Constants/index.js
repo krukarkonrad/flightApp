@@ -28,6 +28,6 @@ export const FLIGHT_COLUMNS = [
     {title: 'Fligth Start', dataIndex: 'fligthStart', key: 'fligthStart', align: 'center'},
     {title: 'Fligth End', dataIndex: 'fligthEnd', key: 'fligthEnd', align: 'center'},
     {title: 'Amount of Seats', dataIndex: 'seats', key: 'seats', align: 'center'},
-    {title: 'Raken Seats', dataIndex: 'takenSeatss', key: 'takenSeatss', align: 'center'},
+    {title: 'Taken Seats', dataIndex: 'takenSeatss', key: 'takenSeatss', align: 'center'},
     {title: 'Ticket Price', dataIndex: 'ticketPrice', key: 'ticketPrice', align: 'center'},
 ]

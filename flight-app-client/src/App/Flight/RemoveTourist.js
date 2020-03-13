@@ -3,11 +3,11 @@ import { deleteRelationship } from '../../Util/APIUtilsTourist.js'
 import NotFound from '../../Common/NotFound.js';
 import ServerError from '../../Common/ServerError.js';
 import LoadingIndicator from '../../Common/LoadingIndicator.js'
-import { Form, Button, DatePicker, notification, Select } from 'antd/lib';
+import { Button, Select } from 'antd/lib';
 
 const { Option } = Select;
 
-class RemoveFlight extends Component{
+class RemoveTourist extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -24,19 +24,18 @@ class RemoveFlight extends Component{
 
     handleFlightPick(event){
         this.setState({
-            flightId: {
+            touristId: {
                 value: event
             }
         })
     }
 
     sendAbandon(event){
-        console.log(this.state.flightId.value + " " + this.props.touristId);
         const rlRq = {
-            touristId: this.props.touristId,
-            flightId: this.state.flightId.value
+            touristId: this.state.touristId.value,
+            flightId: this.props.flightId
         }
-        deleteRelationship(rlRq, this.props.touristId, this.state.flightId.value);
+        deleteRelationship(rlRq, this.state.touristId.value, this.props.flightId);
         alert("REFRESH PAGE!");
     }
 
@@ -55,11 +54,7 @@ class RemoveFlight extends Component{
 
     var dataSource = this.props.touristsFlights.map(
         d => 
-            <Option key={d.id}>Stars {d.fligthStart}
-                | Ends {d.fligthEnd}
-                | TicketPrice {d.ticketPrice}
-                | Seats {d.seats}
-                | Taken {d.takenSeatss}
+            <Option key={d.id}> {d.name} | {d.surname} | {d.country} | {d.birthDate}
             </Option>);
 
 
@@ -83,4 +78,4 @@ class RemoveFlight extends Component{
     }
 }
 
-export default RemoveFlight
+export default RemoveTourist

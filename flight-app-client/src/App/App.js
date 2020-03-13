@@ -27,7 +27,6 @@ function App() {
         </Tabs>
         </Content>
       </div>
-      {/* <Footer className="footer"/> */}
     </Layout>
   );
 }

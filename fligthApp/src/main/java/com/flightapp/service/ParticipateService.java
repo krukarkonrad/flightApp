@@ -36,7 +36,7 @@ public class ParticipateService //implements Comparable<Flight>
             tourist.getFlights().add(flight);
             flight.getTourists().add(tourist);
 
-            flight.setTakenSeatss(flight.getTakenSeatss()+1);
+            flight.setTakenSeatss(flight.getTakenSeatss() + 1);
 
             touristRrepository.save(tourist);
             flightRrepository.save(flight);
@@ -55,7 +55,7 @@ public class ParticipateService //implements Comparable<Flight>
 
         tourist.getFlights().remove(flight);
         flight.getTourists().remove(tourist);
-        flight.setTakenSeatss(flight.getTakenSeatss()-1);
+        flight.setTakenSeatss(flight.getTakenSeatss() - 1);
 
         touristRrepository.save(tourist);
         flightRrepository.save(flight);

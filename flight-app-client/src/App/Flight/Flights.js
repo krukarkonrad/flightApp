@@ -9,10 +9,10 @@ const { TabPane } = Tabs;
 class Flights extends Component{
     render(){
         return(
-            <div className="tusirst-panel">
-                <div className="tflight-table">  
-                    <Tabs defaultActiveKey="2">    
-                        <TabPane tab="List with flights" key="1">
+            <div className="flight-panel">
+                <div className="flight-table">  
+                    <Tabs defaultActiveKey="1">    
+                        <TabPane tab="List with Tourist" key="1">
                             <FlightList />
                         </TabPane>
                         <TabPane tab="Add Flight" key="2">
