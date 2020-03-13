@@ -295,3 +295,12 @@ So we could receive a ```Flight``` with values like:
 
 Which contains ony one ```Tourist``` but seats ```Flight.takenSeatss``` may suggest something else.
 This numbers are only for presentation purpose.
+
+# Future prospect
+
+- Reorganize Frontend
+    - Project structure
+    - Duplicated code like Tourist/Flight adding/removing from Flight/Tourist
+    
+- Make UI more user friendly: auto list refresh, more pleasent picking bar.
+- Filtering table    
