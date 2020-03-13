@@ -262,6 +262,8 @@ After an insert or remove of Tourist/Flight we need to refresh whole page to see
 
 # Disclaimer
 
+As now it looks more like Admin Panel - we have an access to everything.
+
 Values like ```seats```, ```takenSeatss``` are totally random: 
 ```
 seats = takenSeatss + random(1,4)
@@ -303,4 +305,6 @@ This numbers are only for presentation purpose.
     - Duplicated code like Tourist/Flight adding/removing from Flight/Tourist
     
 - Make UI more user friendly: auto list refresh, more pleasant picking bar.
-- Filtering table    
+- Filtering table
+
+- Add login option and manage only proper user flight
