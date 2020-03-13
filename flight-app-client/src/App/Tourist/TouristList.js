@@ -4,7 +4,7 @@ import { getAllTourist , } from '../../Util/APIUtilsTourist.js'
 import NotFound from '../../Common/NotFound.js';
 import ServerError from '../../Common/ServerError.js';
 import LoadingIndicator from '../../Common/LoadingIndicator.js'
-import { Table, Tabs, Collapse } from 'antd/lib';
+import { Table, Collapse } from 'antd/lib';
 import { TOURSIT_COLUMNS, FLIGHT_COLUMNS } from '../../Constants/index.js'
 import SearchFlight from './SearchFlight';
 import RemoveFlight from './RemoveFlight';

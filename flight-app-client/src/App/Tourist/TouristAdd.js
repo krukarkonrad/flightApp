@@ -8,7 +8,6 @@ import {
 
 import { Form, Input, Button, notification, DatePicker, Cascader } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
-//import './TouristAdd.css'
 
 class TouristAdd extends Component{
     constructor(props) {

@@ -10,7 +10,6 @@ class Flights extends Component{
     render(){
         return(
             <div className="tusirst-panel">
-                {/* <h1>Flights</h1> */}
                 <div className="tflight-table">  
                     <Tabs defaultActiveKey="2">    
                         <TabPane tab="List with flights" key="1">
@@ -18,9 +17,6 @@ class Flights extends Component{
                         </TabPane>
                         <TabPane tab="Add Flight" key="2">
                             <FlightAdd />
-                        </TabPane>
-                        <TabPane tab="Edit Flight" key="3">
-                            edit
                         </TabPane>
                     </Tabs>
                 </div>

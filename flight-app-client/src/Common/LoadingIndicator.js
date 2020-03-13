@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { Spin, Button } from 'antd/lib';
-import { Link } from 'react-router-dom';
+import { Spin } from 'antd/lib';
 import './NotFound.css';
 
 class LoadingIndicator extends Component {

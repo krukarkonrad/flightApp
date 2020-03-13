@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-//import './Flights.css'
 import { getCorrcetFlight, putRelationship } from '../../Util/APIUtilsTourist.js'
 import NotFound from '../../Common/NotFound.js';
 import ServerError from '../../Common/ServerError.js';
 import LoadingIndicator from '../../Common/LoadingIndicator.js'
 import { Form, Button, DatePicker, notification, Select } from 'antd/lib';
-import { TOURSIT_COLUMNS, FLIGHT_COLUMNS } from '../../Constants/index.js'
 import FormItem from 'antd/lib/form/FormItem';
 
 const { Option } = Select;
@@ -43,10 +41,10 @@ class SearchFlight extends Component{
         getCorrcetFlight(addTouristRequest)
         .then(response => {
             this.setState({flights:response});
-            // notification.success({
-            //     message: 'Fligth App',
-            //     description: "New Tourist Added!",
-            // });     
+            notification.success({
+                message: 'Fligth App',
+                description: "Fligth added, Refres whole page!",
+            });     
             console.log(this.state.flights);     
             
         }).catch(error => {
@@ -85,9 +83,6 @@ class SearchFlight extends Component{
         }
         putRelationship(rlRq, this.props.touristId, this.state.flightId.value);
     }
-    // componentDidMount(){
-    //     this.loadFlights()
-    // }
 
     render(){
         if(this.state.isLoading) {
@@ -151,7 +146,6 @@ class SearchFlight extends Component{
                     >Buy</Button>
             </div>
         );
-        
     }
 }
 

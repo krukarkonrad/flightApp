@@ -3,7 +3,7 @@ import { deleteRelationship } from '../../Util/APIUtilsTourist.js'
 import NotFound from '../../Common/NotFound.js';
 import ServerError from '../../Common/ServerError.js';
 import LoadingIndicator from '../../Common/LoadingIndicator.js'
-import { Form, Button, DatePicker, notification, Select } from 'antd/lib';
+import { Button, Select } from 'antd/lib';
 
 const { Option } = Select;
 
@@ -31,7 +31,6 @@ class RemoveFlight extends Component{
     }
 
     sendAbandon(event){
-        console.log(this.state.flightId.value + " " + this.props.touristId);
         const rlRq = {
             touristId: this.props.touristId,
             flightId: this.state.flightId.value

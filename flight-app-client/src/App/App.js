@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
 import 'antd/dist/antd.css';
-
-import Footer from "../Common/Footer"
 import Tourists from "./Tourist/Tourists"
 import Flight from "./Flight/Flights"
 import { Tabs } from 'antd/lib';
