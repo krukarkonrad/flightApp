@@ -135,7 +135,7 @@ PATCH do require JSON body with fields to edit.
 	"surname": "Kowalski",
 }
 ```
-This body is recived as ```Map<String, Object> updates``` which is used by loop to upload certain fields.
+This body is received as ```Map<String, Object> updates``` which is used by loop to upload certain fields.
 
 Flight.GET
  --
@@ -220,7 +220,7 @@ PATCH do require JSON body with fields to edit.
 	"takenSeatss": "2",
 }
 ```
-This body is recived as ```Map<String, Object> updates``` which is used by loop to upload certain fields.
+This body is received as ```Map<String, Object> updates``` which is used by loop to upload certain fields.
 
 
 Participate.PUT
@@ -249,13 +249,13 @@ Removes a relationship between Tourist and Flight
 
 Every HTTP call is holded by proper service that is doing whole logic and database stuff.
 
-Backend code is availabe in this repository ```flightApp/fligthApp/src/main/java/com/flightapp/```
+Backend code is available in this repository ```flightApp/fligthApp/src/main/java/com/flightapp/```
 
 # Frontend
 
-As an aplication ctoains only few action I wasn't using React Route.
+As an application contains only few action I wasn't using React Route.
 
-The biggest vulnerability for me is not refreshing list of Tourist/Flight assignet.
+The biggest vulnerability for me is not refreshing list of Tourist/Flight assigned.
 
 After an insert or remove of Tourist/Flight we need to refresh whole page to see results.
 
@@ -302,5 +302,5 @@ This numbers are only for presentation purpose.
     - Project structure
     - Duplicated code like Tourist/Flight adding/removing from Flight/Tourist
     
-- Make UI more user friendly: auto list refresh, more pleasent picking bar.
+- Make UI more user friendly: auto list refresh, more pleasant picking bar.
 - Filtering table    
