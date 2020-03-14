@@ -28,6 +28,7 @@ export function postTourist(addTouristRequest) {
 }
 
 export function getTourist(touristId) {
+    console.log(API_BASE_URL + "/tourist/" + touristId)
     return request({
         url: API_BASE_URL + "/tourist/" + touristId,
         method: 'GET',

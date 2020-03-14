@@ -43,7 +43,7 @@ class SearchFlight extends Component{
             this.setState({flights:response});
             notification.success({
                 message: 'Fligth App',
-                description: "Fligth added, Refres whole page!",
+                description: "Select and buy flight!",
             });     
             console.log(this.state.flights);     
             

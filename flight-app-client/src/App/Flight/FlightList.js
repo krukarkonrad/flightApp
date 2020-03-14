@@ -4,7 +4,7 @@ import { getAllFlight } from '../../Util/APIUtilsFlights.js'
 import NotFound from '../../Common/NotFound.js';
 import ServerError from '../../Common/ServerError.js';
 import LoadingIndicator from '../../Common/LoadingIndicator.js'
-import { Table, Collapse } from 'antd/lib';
+import { Table, Collapse, Button } from 'antd/lib';
 import { TOURSIT_COLUMNS, FLIGHT_COLUMNS } from '../../Constants/index.js'
 import SearchTourist from './SearchTourist';
 import RemoveTourist from './RemoveTourist';
@@ -68,6 +68,13 @@ class FlightList extends Component{
               
         return(
             <div className="flight-table">  
+                <div>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        onClick={this.loadTourists}
+                    >Refresh</Button>
+                </div> 
                 <Table
                     alignment={'center'}
                     columns={FLIGHT_COLUMNS}

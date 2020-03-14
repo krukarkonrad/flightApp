@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './Tourists.css'
-import { getAllTourist } from '../../Util/APIUtilsTourist.js'
+import { getAllTourist, getTourist } from '../../Util/APIUtilsTourist.js'
 import NotFound from '../../Common/NotFound.js';
 import ServerError from '../../Common/ServerError.js';
 import LoadingIndicator from '../../Common/LoadingIndicator.js'
-import { Table, Collapse } from 'antd/lib';
+import { Table, Collapse, Button } from 'antd/lib';
 import { TOURSIT_COLUMNS, FLIGHT_COLUMNS } from '../../Constants/index.js'
 import SearchFlight from './SearchFlight';
 import RemoveFlight from './RemoveFlight';
@@ -20,6 +20,8 @@ class TouristList extends Component{
         }
         this.loadTourists = this.loadTourists.bind(this);
     }
+
+    
 
     loadTourists(){
         this.setState({
@@ -51,6 +53,7 @@ class TouristList extends Component{
         this.loadTourists()
     }
 
+
     render(){
         if(this.state.isLoading) {
             return <LoadingIndicator />;
@@ -67,15 +70,20 @@ class TouristList extends Component{
         var dataSource = this.state.tourists;
 
         return(
-            <div className="tourist-table">  
+            <div className="tourist-table"> 
+                <div>
+                    <Button
+                    type="primary"
+                    htmlType="submit"
+                    onClick={this.loadTourists}
+                    >Refresh</Button>
+                    </div> 
                 <Table
                     alignment={'center'}
                     columns={TOURSIT_COLUMNS}
                     rowKey = "id"
                     expandedRowRender={(record, index) => {
-                        var fligthData = dataSource[index].flights;
                         var touristId = dataSource[index].id;
-
                         return (
                             <Collapse accordion>
                                 <Panel header="Booked Flight" key="1">
@@ -83,7 +91,7 @@ class TouristList extends Component{
                                     bordered
                                     rowKey="id"
                                     columns={FLIGHT_COLUMNS}
-                                    dataSource={fligthData}
+                                    dataSource={dataSource[index].flights}
                                     /> 
                                 </Panel>
                                 <Panel header="Book new Flight" key="2">
@@ -93,7 +101,7 @@ class TouristList extends Component{
                                 <Panel header="Remove Flight" key="3">
                                 <RemoveFlight
                                     touristId={touristId}
-                                    touristsFlights={fligthData}/>
+                                    touristsFlights={dataSource[index].flights}/>
                                 </Panel>
                             </Collapse>
                             )
