@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Flights.css'
-import { getAllFlight } from '../../Util/APIUtilsFlights.js'
+import { getAllFlight, getFlight } from '../../Util/APIUtilsFlights.js'
 import NotFound from '../../Common/NotFound.js';
 import ServerError from '../../Common/ServerError.js';
 import LoadingIndicator from '../../Common/LoadingIndicator.js'
@@ -47,6 +47,17 @@ class FlightList extends Component{
         });
     }
 
+    handleRefresh(touristId, localIndex)  {
+        getFlight(touristId)
+        .then(response => {
+            let tempClone = this.state.flights;
+            tempClone[localIndex]=response;
+            this.setState({
+                flights: tempClone
+            })
+        });
+    }
+
     componentDidMount(){
         this.loadFlights()
     }
@@ -68,23 +79,21 @@ class FlightList extends Component{
               
         return(
             <div className="flight-table">  
-                <div>
-                    <Button
-                        type="primary"
-                        htmlType="submit"
-                        onClick={this.loadTourists}
-                    >Refresh</Button>
-                </div> 
                 <Table
                     alignment={'center'}
                     columns={FLIGHT_COLUMNS}
                     rowKey = "id"
                     expandedRowRender={(record, index) => {
                         var touristData = dataSource[index].tourists;
-                        var flightId = dataSource[index].id;
+                        var flightId = this.state.flights[index].id;
                         return (
                             <Collapse accordion>
-                                <Panel header="Tourist assigned" key="1">
+                                <Panel header="Tourist assigned" key="1"
+                                        extra={
+                                            <Button
+                                            onClick={event => this.handleRefresh(flightId, index)}
+                                            >Refresh</Button>}
+                                        >
                                 <Table 
                                     bordered
                                     rowKey="id"

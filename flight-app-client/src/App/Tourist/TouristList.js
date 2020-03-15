@@ -21,8 +21,6 @@ class TouristList extends Component{
         this.loadTourists = this.loadTourists.bind(this);
     }
 
-    
-
     loadTourists(){
         this.setState({
             isLoading: true
@@ -53,6 +51,16 @@ class TouristList extends Component{
         this.loadTourists()
     }
 
+    handleRefresh(touristId, localIndex)  {
+        getTourist(touristId)
+        .then(response => {
+            let tempClone = this.state.tourists;
+            tempClone[localIndex]=response;
+            this.setState({
+                tourists: tempClone
+            })
+        });
+    }
 
     render(){
         if(this.state.isLoading) {
@@ -71,22 +79,21 @@ class TouristList extends Component{
 
         return(
             <div className="tourist-table"> 
-                <div>
-                    <Button
-                    type="primary"
-                    htmlType="submit"
-                    onClick={this.loadTourists}
-                    >Refresh</Button>
-                    </div> 
                 <Table
                     alignment={'center'}
                     columns={TOURSIT_COLUMNS}
                     rowKey = "id"
                     expandedRowRender={(record, index) => {
-                        var touristId = dataSource[index].id;
+                        var touristId = this.state.tourists[index].id;
                         return (
                             <Collapse accordion>
-                                <Panel header="Booked Flight" key="1">
+                                <Panel 
+                                    header="Booked Flight" key="1" 
+                                    extra={
+                                        <Button
+                                        onClick={event => this.handleRefresh(touristId, index)}
+                                        >Refresh</Button>}
+                                    >
                                 <Table 
                                     bordered
                                     rowKey="id"
