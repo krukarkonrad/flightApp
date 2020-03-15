@@ -44,9 +44,7 @@ class SearchFlight extends Component{
             notification.success({
                 message: 'Fligth App',
                 description: "Select and buy flight!",
-            });     
-            console.log(this.state.flights);     
-            
+            });      
         }).catch(error => {
             notification.error({
                 message: 'Fligth App',
@@ -56,7 +54,6 @@ class SearchFlight extends Component{
     }
 
     handleDatePickerChange(name, inputValue){
-        console.log(name + " " + inputValue)
         this.setState({
             [name] : {
                 value: inputValue
@@ -65,9 +62,7 @@ class SearchFlight extends Component{
         console.log(name + " " + inputValue)
     }
 
-    handleFlightPick(event){
-        
-        this.setState({
+    handleFlightPick(event){this.setState({
             flightId: {
                 value: event
             }
@@ -76,7 +71,6 @@ class SearchFlight extends Component{
     }
 
     sendRelationship(event){
-        console.log(this.state.flightId.value + " " + this.props.touristId);
         const rlRq = {
             touristId: this.props.touristId,
             flightId: this.state.flightId.value

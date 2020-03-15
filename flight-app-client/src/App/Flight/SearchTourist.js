@@ -67,8 +67,7 @@ class SearchTourist extends Component{
             touristId: this.state.touristId.value,
             flightId: this.props.flightId
         }
-        putRelationship(rlRq, this.state.touristId.value, this.props.flightId);
-        alert("REFRESH PAGE!");
+        putRelationship(rlRq, this.state.touristId.value, this.props.flightId)
     }
 
     render(){

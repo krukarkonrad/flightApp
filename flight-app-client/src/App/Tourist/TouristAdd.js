@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { postTourist } from '../../Util/APIUtilsTourist'
-
+import './TouristAdd.css'
 import { 
     NAME_MIN_LENGTH, NAME_MAX_LENGTH,
     GENDERS
@@ -96,14 +96,13 @@ class TouristAdd extends Component{
         return(
             <div className="tourist-add-container">
             <h1 className="page-title">Add new tourist</h1>
-            <div className="add-content">
                 <Form className="add-tourist-form">
                     <FormItem
                         label="Name"
                         validateStatus={this.state.validateStatus}
                         help={this.state.name.errorMsg}>
                         <Input
-                            size="large"
+                            size="middle"
                             name="name"
                             autoComplete="off"
                             placeholder="First Name"
@@ -116,7 +115,7 @@ class TouristAdd extends Component{
                         validateStatus={this.state.validateStatus}
                         help={this.state.surname.errorMsg}>
                         <Input
-                            size="large"
+                            size="middle"
                             name="surname"
                             autoComplete="off"
                             placeholder="Surname"
@@ -130,6 +129,7 @@ class TouristAdd extends Component{
                         <Cascader 
                             options={GENDERS}
                             onChange={(v, s) => this.handleCascader(v)}
+                            
                         />
                     </FormItem>
                     <FormItem
@@ -137,7 +137,7 @@ class TouristAdd extends Component{
                         validateStatus={this.state.validateStatus}
                         help={this.state.country.errorMsg}>
                         <Input
-                            size="large"
+                            size="middle"
                             name="country"
                             autoComplete="off"
                             placeholder="Country"
@@ -156,7 +156,7 @@ class TouristAdd extends Component{
                         validateStatus={this.state.validateStatus}
                         help={this.state.notes.errorMsg}>
                         <Input
-                            size="large"
+                            size="middle"
                             name="notes"
                             autoComplete="off"
                             placeholder="Notes"
@@ -173,7 +173,6 @@ class TouristAdd extends Component{
                             >Add Tourist</Button>
                     </FormItem>
                 </Form>
-                </div>
             </div>
         )
     }

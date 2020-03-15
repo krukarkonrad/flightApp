@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { postFlight } from '../../Util/APIUtilsFlights'
-
-import { 
-    NAME_MIN_LENGTH, NAME_MAX_LENGTH,
-    GENDERS
-} from '../../Constants/index.js';
+import './FlightAdd.css'
 
 import { Form, InputNumber, Button, notification, DatePicker, TimePicker } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
@@ -51,13 +47,11 @@ class FlightAdd extends Component{
     }
 
     handleDate(name, dateString) {
-        console.log(name)
         this.setState({
             [name] : {
                 value: dateString
             }
         });
-        console.log(name + " " + dateString);
     }
 
     handleTime(name, timeString) {
@@ -69,7 +63,6 @@ class FlightAdd extends Component{
     }
 
     handlePriceChange(name, value){
-        console.log(name + " " +value)
         this.setState({
             [name]:{
                 value: value
@@ -87,7 +80,6 @@ class FlightAdd extends Component{
             takenSeatss: this.state.takenSeatss.validateStatus,
             ticketPrice: this.state.ticketPrice.value
         };
-        console.log(addFlightRequest);
         postFlight(addFlightRequest)
         .then(response => {
             notification.success({
@@ -105,10 +97,10 @@ class FlightAdd extends Component{
 
     render(){
         return(
-            <div className="tflight-add-container">
+            <div className="flight-add-container">
             <h1 className="page-title">Add new flight</h1>
             <div className="add-content">
-                <Form className="add-tflight-form">
+                <Form className="add-flight-form">
 
                     <FormItem
                         label="Start Date and Time"
